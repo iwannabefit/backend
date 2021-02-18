@@ -1,8 +1,23 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const helmet = require('helmet');
 
-app.get('/', (req, res) => {
-  res.send('Hello world')
-})
+// Settings
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-module.exports = app
+// Middlewares
+app.use(helmet());
+
+// Routes
+const pingRoutes = require('../api/ping/routes');
+
+//Models Call
+const Ping = require('../models/Ping');
+
+// FULL ROUTER
+pingRoutes(app, Ping);
+
+module.exports = app;
