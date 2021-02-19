@@ -1,4 +1,7 @@
-const app = require('./app')
-const { PORT } = process.env
+const app = require('./app');
+const DB = require('../lib/db');
+const { PORT } = require('../config/');
 
-app.listen(PORT, () => console.log(`Server ready on http://localhost:${PORT}`))
+DB.connect();
+
+app.listen(PORT, () => console.log(`Server ready on http://localhost:${PORT}`));
