@@ -30,6 +30,8 @@
     "mongoose": "^5.10.0"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   }
 }
