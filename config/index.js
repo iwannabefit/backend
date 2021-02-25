@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 
 const config = {
   PORT: process.env.PORT,
@@ -6,7 +6,7 @@ const config = {
   DB_PASSWD: process.env.DB_PASSWD,
   DB_HOST: process.env.DB_HOST,
   DB_NAME: process.env.DB_NAME,
-  JWT_SECRET: process.env.JWT_SECRET,
-};
+  JWT_SECRET: process.env.JWT_SECRET
+}
 
-module.exports = config;
+module.exports = config

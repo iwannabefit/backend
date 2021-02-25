@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
 const PingSchema = new Schema({
   email: {
@@ -7,7 +7,7 @@ const PingSchema = new Schema({
   },
   name: {
     type: String
-  },
-});
+  }
+})
 
-module.exports = model('Ping', PingSchema);
+module.exports = model('Ping', PingSchema)
