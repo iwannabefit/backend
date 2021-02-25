@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const helmet = require('helmet')
-
+const errorsMiddleware = require('../utils/errors-middleware')
 // Settings
 app.use(cors())
 app.use(express.json())
@@ -22,5 +22,8 @@ const User = require('../models/user')
 // FULL ROUTER
 pingRoutes(app, Ping)
 authRoutes(app, User)
+
+// Error handling
+app.use(errorsMiddleware)
 
 module.exports = app

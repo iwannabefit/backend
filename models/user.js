@@ -3,7 +3,9 @@ const { model, Schema } = require('mongoose')
 const definition = {
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    index: true
   },
   password: {
     type: String,
