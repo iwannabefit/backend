@@ -5,7 +5,15 @@ function authController (storage) {
   }
 
   async function create ({ email, password }) {
-    return Storage.create({ email, password })
+    const repeated = await find({ email })
+    if (!repeated) {
+      return Storage.create({ email, password })
+    }
+    return false
+  }
+
+  async function find ({ email }) {
+    return Storage.findOne({ email })
   }
 
   return {
