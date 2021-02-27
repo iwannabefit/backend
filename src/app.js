@@ -13,11 +13,14 @@ app.use(helmet());
 
 // Routes
 const pingRoutes = require('../api/ping/routes');
+const classRoutes = require('../api/class/routes');
 
 //Models Call
 const Ping = require('../models/Ping');
+const Class = require('../models/Class');
 
 // FULL ROUTER
 pingRoutes(app, Ping);
+classRoutes(app, Class);
 
 module.exports = app;
