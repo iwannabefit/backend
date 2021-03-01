@@ -17,7 +17,8 @@ function authController (storage) {
   }
 
   return {
-    create
+    create,
+    find
   }
 }
 

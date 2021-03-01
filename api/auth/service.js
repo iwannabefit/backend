@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const { JWT_SECRET } = require('../../config')
 const response = require('../../utils/responses')
 
 function authService (storage) {
@@ -27,12 +29,36 @@ function authService (storage) {
     }
   }
 
+  async function signIn (req, res, next) {
+    const data = req.body
+    try {
+      if (!data.email || !data.password) {
+        return response.error(req, res, 'Missing log in information', 401)
+      }
+      const dbUser = await controller.find({ email: data.email })
+      console.log(dbUser)
+      if (dbUser) {
+        const passwordComparison = await bcrypt.compare(data.password, dbUser.password)
+        if (passwordComparison) {
+          delete dbUser.password
+          console.log(dbUser)
+          const token = await jwt.sign({ sub: dbUser._id, email: dbUser.email }, JWT_SECRET)
+          return response.success(req, res, { id: dbUser._id, email: dbUser.email, token }, 200)
+        }
+      }
+      return response.error(req, res, 'Unauthorized', 401)
+    } catch (err) {
+      next(err)
+    }
+  }
+
   function passwordVerify (password) {
     return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)
   }
 
   return {
-    register
+    register,
+    signIn
   }
 }
 
