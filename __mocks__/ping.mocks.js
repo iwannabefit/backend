@@ -9,32 +9,32 @@ const pingInfo = [
     email: 'trololo2@gmail.com',
     name: 'trololo2'
   }
-];
+]
 
 class Ping {
-  constructor(data) {
-    this.data = data || false;
+  constructor (data) {
+    this.data = data || false
   }
 
-  static find() {
-    return pingInfo;
+  static find () {
+    return pingInfo
   }
 
-  static findById(_id) {
+  static findById (_id) {
     if (!_id) {
-      return undefined;
+      return undefined
     }
-    return pingInfo.filter(item => item._id == _id)[0];
+    return pingInfo.filter(item => item._id === _id)[0]
   }
 
-  save() {
-    pingInfo.push(this.data);
-    const item = pingInfo[pingInfo.length - 1];
-    return item;
+  save () {
+    pingInfo.push(this.data)
+    const item = pingInfo[pingInfo.length - 1]
+    return item
   }
 }
 
 module.exports = {
   Ping,
   pingInfo
-};
+}
