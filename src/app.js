@@ -12,16 +12,19 @@ app.use(express.urlencoded({ extended: false }))
 app.use(helmet())
 
 // Routes
-const pingRoutes = require('../api/ping/routes')
-const authRoutes = require('../api/auth')
+const pingRoutes = require('../api/ping/routes');
+const classRoutes = require('../api/class/routes');
+const authRoutes = require('../api/auth');
 
-// Models Call
-const Ping = require('../models/Ping')
-const User = require('../models/user')
+//Models Call
+const Ping = require('../models/Ping');
+const Class = require('../models/Class');
+const User = require('../models/user');
 
 // FULL ROUTER
-pingRoutes(app, Ping)
-authRoutes(app, User)
+pingRoutes(app, Ping);
+classRoutes(app, Class);
+authRoutes(app, User);
 
 // Error handling
 app.use(errorsMiddleware)
